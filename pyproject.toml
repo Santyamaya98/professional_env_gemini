@@ -35,11 +35,6 @@ dev = [
     "types-requests>=2.32.4.20250913",
 ]
 
-[tool.ruff]
-extend-exclude = [
-    "src/platzi_news/do_not_format"
-]
-
 [tool.ruff.lint]
 select = [
     # pycodestyle
@@ -90,3 +85,10 @@ name = "testpypi"
 url = "https://test.pypi.org/simple/"
 publish-url = "https://test.pypi.org/legacy/"
 explicit = true
+
+[tool.ruff]
+
+line-length = 250
+extend-exclude = [
+    "src/platzi_news/do_not_format"
+]

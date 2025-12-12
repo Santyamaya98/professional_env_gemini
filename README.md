@@ -1,5 +1,11 @@
 # Platzi News 📰🤖
 
+## Aqui estas en el final del curso 5
+
+aqui usamos ruff check para validar que el projecto cumpliera con los estandares deseados asi que se organizaron las bibliotecas en analyzer.py... 
+se modificaron unas lambda function timeit_platzi_news.py
+si quieres realizar el curso completo usando este repositorio te aconsejo que descargues el primer commit
+----->  https://github.com/Santyamaya98/professional_env_gemini/commit/e9051dfaaa56abdfdcda3fd8d8eb7f43192e5068 
 
 ## Este es un proyecto usando gemini 
 

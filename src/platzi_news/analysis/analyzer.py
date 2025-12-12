@@ -7,10 +7,8 @@ import json
 import logging
 from collections import defaultdict
 
-# from openai import OpenAI
 from google import genai
 from google.genai import types  # Import types for the config
-
 
 from ..config import settings
 from ..core.exceptions import AnalysisError
@@ -44,24 +42,29 @@ class OpenAIAnalyzer:
 
         prompt = f"{context}\nBasado en estos artículos, {question}"
         logger.debug("Sending request to Gemini API")
-
+        system_ins_promt = (
+            "Usted es un Revisor de Noticias profesional y un analista experto en la materia del artículo proporcionado. "
+            "Su tarea es entregar un resumen conciso y objetivo del contenido."
+            "**REGLA DE IDIOMA:** Si el prompt de entrada está en español, la respuesta completa debe estar en español. De lo contrario, utilice el inglés."
+            "**FORMATO OBLIGATORIO:** Su respuesta debe terminar con una sección de 'Puntos Clave'. Esta sección debe contener **SIEMPRE 5 viñetas** con la información más esencial y relevante del artículo."
+        )   
         try:
             # FIX: Move parameters into the config object
             response = self.client.models.generate_content(
                 model=settings.openai_model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    system_instruction="You are a helpful assistant analyzing news articles and must answer in Spanish based on the provided articles.",
+                    system_instruction=(f'follow this instruction -> {system_ins_promt}'),
                     max_output_tokens=settings.openai_max_tokens,
-                    temperature=0.7,
-                ),
+                    temperature=0.3,
+                )
             )
-
+            
             content = response.text
-
+            
             if content is None or content == "":
-                raise AnalysisError("Gemini returned empty response")
-
+                raise AnalysisError("Gemini returned empty response") 
+                
             answer: str = content.strip()
             logger.info("Successfully received analysis from Gemini")
             return answer
