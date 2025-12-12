@@ -7,9 +7,9 @@ import json
 import logging
 from collections import defaultdict
 
-#from openai import OpenAI
+# from openai import OpenAI
 from google import genai
-from google.genai import types # Import types for the config
+from google.genai import types  # Import types for the config
 
 
 from ..config import settings
@@ -44,7 +44,7 @@ class OpenAIAnalyzer:
 
         prompt = f"{context}\nBasado en estos artículos, {question}"
         logger.debug("Sending request to Gemini API")
-        
+
         try:
             # FIX: Move parameters into the config object
             response = self.client.models.generate_content(
@@ -54,14 +54,14 @@ class OpenAIAnalyzer:
                     system_instruction="You are a helpful assistant analyzing news articles and must answer in Spanish based on the provided articles.",
                     max_output_tokens=settings.openai_max_tokens,
                     temperature=0.7,
-                )
+                ),
             )
-            
+
             content = response.text
-            
+
             if content is None or content == "":
-                raise AnalysisError("Gemini returned empty response") 
-                
+                raise AnalysisError("Gemini returned empty response")
+
             answer: str = content.strip()
             logger.info("Successfully received analysis from Gemini")
             return answer
