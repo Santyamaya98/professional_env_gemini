@@ -48,7 +48,7 @@ class TestGetAnalyzer(unittest.TestCase):
 
     @patch("platzi_news.config.settings")
     def test_get_analyzer_success(self, mock_settings):
-        mock_settings.openai_api_key = "fake_key"
+        mock_settings.gemini_api_key = "fake_key"
         analyzer = get_analyzer()
         self.assertIsInstance(analyzer, OpenAIAnalyzer)
 

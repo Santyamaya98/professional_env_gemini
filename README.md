@@ -1,5 +1,11 @@
 # Platzi News 📰🤖
 
+
+## Este es un proyecto usando gemini 
+
+La idea es emplear la versión gratuita que ofrece google... gemini flash 2.5 lo cual esta bastante bien para aprender por ahora se han modificado los archivos solo para cargar el modelo y conectar la api de google, algunos imports se comentaron para sacar a openai de la ecuación por ahora las variables es dejaron tal y como estaban, el unico archivo que ah sido modificado en gran medida fue /analysis/analyzer.py
+
+
 ## Descripción General
 
 Este proyecto es parte del curso "Python Avanzado" en Platzi, impartido por [@lcmartinezdev](https://github.com/lcmartinezdev).
