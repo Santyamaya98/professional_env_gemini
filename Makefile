@@ -9,3 +9,9 @@ run:
 
 publish:
 	uv publish --index testpypi --username __token__ --password NUNCA_PUBLICAR_CLAVES
+
+how-to-ask:
+	@echo "platzi-news  ask "query" "pregunta sobre el tema" --source [guardian|newsapi]"
+
+colombia:
+	platzi-news  ask "Colombia" "Que noticias importantes hay sobre la economia" --source guardian
