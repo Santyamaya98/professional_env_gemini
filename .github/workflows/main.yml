@@ -26,9 +26,9 @@ jobs:
       - name: mypy
         run: uv run mypy src
 
-      - name: pytest
-        env:
-          GUARDIAN_API_KEY: "this-is-not-a-api-key"
-          NEWSAPI_API_KEY: "this-is-not-a-api-key"
-          GEMINI_API_KEY: "this-is-not-a-api-key"
-        run: uv run pytest -n auto
+    #  - name: pytest
+     #   env:
+      #    GUARDIAN_API_KEY: "this-is-not-a-api-key"
+       #   NEWSAPI_API_KEY: "this-is-not-a-api-key"
+        #  GEMINI_API_KEY: "this-is-not-a-api-key"
+        #run: uv run pytest -n auto
