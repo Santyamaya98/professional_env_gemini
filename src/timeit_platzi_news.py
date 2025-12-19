@@ -1,5 +1,7 @@
 import timeit
 
+
+
 from platzi_news.analysis.analyzer import (
     find_duplicate_titles,
     find_duplicate_titles_improved,
@@ -32,11 +34,11 @@ def test_performance() -> None:
         articles = create_test_articles(size)
 
         time_original = timeit.timeit(
-            lambda a=articles: find_duplicate_titles(a),
+            lambda : find_duplicate_titles(articles),
             number=1,
         )
         time_improved = timeit.timeit(
-            lambda a=articles: find_duplicate_titles_improved(a),
+            lambda : find_duplicate_titles_improved(articles),
             number=1,
         )
 
