@@ -34,9 +34,7 @@ class NewsAPI(NewsSource):
         }
         try:
             logger.debug("Making request to NewsAPI")
-            response = requests.get(
-                self.BASE_URL, params=params, timeout=settings.request_timeout
-            )
+            response = requests.get(self.BASE_URL, params=params, timeout=settings.request_timeout)
             response.raise_for_status()
             data = response.json()
             articles: list[Article] = [
@@ -51,10 +49,7 @@ class NewsAPI(NewsSource):
             return articles
         except requests.RequestException as e:
             logger.error(f"Failed to fetch articles from NewsAPI: {e}")
-            msg = (
-                f"Error al obtener artículos de NewsAPI: {e}. "
-                "Verifique su conexión a internet y la clave de API de NewsAPI."
-            )
+            msg = f"Error al obtener artículos de NewsAPI: {e}. Verifique su conexión a internet y la clave de API de NewsAPI."
             raise APIError(msg) from e
 
     async def afetch_articles(self, query: str) -> list[Article]:
@@ -69,9 +64,7 @@ class NewsAPI(NewsSource):
             "language": "es",
         }
         async with httpx.AsyncClient() as client:
-            response = await client.get(
-                self.BASE_URL, params=params, timeout=settings.request_timeout
-            )
+            response = await client.get(self.BASE_URL, params=params, timeout=settings.request_timeout)
             data = response.json()
             articles: list[Article] = [
                 Article(

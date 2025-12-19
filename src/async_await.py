@@ -25,9 +25,7 @@ async def main() -> None:
     )
 
     fin_total = time.perf_counter()
-    logging.info(
-        f"=== Fin programa ASYNC - total {fin_total - inicio_total:.2f} seg ==="
-    )
+    logging.info(f"=== Fin programa ASYNC - total {fin_total - inicio_total:.2f} seg ===")
     print("Resultados:", resultados)
 
 

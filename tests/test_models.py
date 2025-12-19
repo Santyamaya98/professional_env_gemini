@@ -10,9 +10,7 @@ class TestArticle(unittest.TestCase):
 
     def test_article_creation(self):
         """Test creating an Article instance."""
-        article = Article(
-            title="Test Title", description="Test Description", url="http://example.com"
-        )
+        article = Article(title="Test Title", description="Test Description", url="http://example.com")
         self.assertEqual(article.title, "Test Title")
         self.assertEqual(article.description, "Test Description")
         self.assertEqual(article.url, "http://example.com")

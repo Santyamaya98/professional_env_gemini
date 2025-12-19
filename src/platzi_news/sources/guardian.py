@@ -34,9 +34,7 @@ class GuardianAPI(NewsSource):
         }
         try:
             logger.debug("Making request to The Guardian API")
-            response = requests.get(
-                self.BASE_URL, params=params, timeout=settings.request_timeout
-            )
+            response = requests.get(self.BASE_URL, params=params, timeout=settings.request_timeout)
             response.raise_for_status()
             data = response.json()
             articles = []
@@ -53,10 +51,7 @@ class GuardianAPI(NewsSource):
             return articles
         except requests.RequestException as e:
             logger.error(f"Failed to fetch articles from The Guardian: {e}")
-            msg = (
-                f"Error al obtener artículos de The Guardian: {e}. "
-                "Verifique su conexión a internet y la clave de API de The Guardian."
-            )
+            msg = f"Error al obtener artículos de The Guardian: {e}. Verifique su conexión a internet y la clave de API de The Guardian."
             raise APIError(msg) from e
 
     async def afetch_articles(self, query: str) -> list[Article]:
@@ -70,9 +65,7 @@ class GuardianAPI(NewsSource):
         }
         logger.debug("Making request to The Guardian API")
         async with httpx.AsyncClient() as client:
-            response = await client.get(
-                self.BASE_URL, params=params, timeout=settings.request_timeout
-            )
+            response = await client.get(self.BASE_URL, params=params, timeout=settings.request_timeout)
             data = response.json()
             articles = []
             for result in data.get("response", {}).get("results", []):

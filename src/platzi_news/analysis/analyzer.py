@@ -47,34 +47,31 @@ class OpenAIAnalyzer:
             "Su tarea es entregar un resumen conciso y objetivo del contenido."
             "**REGLA DE IDIOMA:** Si el prompt de entrada está en español, la respuesta completa debe estar en español. De lo contrario, utilice el inglés."
             "**FORMATO OBLIGATORIO:** Su respuesta debe terminar con una sección de 'Puntos Clave'. Esta sección debe contener **SIEMPRE 5 viñetas** con la información más esencial y relevante del artículo."
-        )   
+        )
         try:
             # FIX: Move parameters into the config object
             response = self.client.models.generate_content(
                 model=settings.openai_model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    system_instruction=(f'follow this instruction -> {system_ins_promt}'),
+                    system_instruction=(f"follow this instruction -> {system_ins_promt}"),
                     max_output_tokens=settings.openai_max_tokens,
                     temperature=0.3,
-                )
+                ),
             )
-            
+
             content = response.text
-            
+
             if content is None or content == "":
-                raise AnalysisError("Gemini returned empty response") 
-                
+                raise AnalysisError("Gemini returned empty response")
+
             answer: str = content.strip()
             logger.info("Successfully received analysis from Gemini")
             return answer
 
         except Exception as e:
             logger.error(f"Error analyzing with Gemini: {e}")
-            msg = (
-                f"Error al analizar artículos con Gemini: {e}. "
-                "Verifique su conexión a internet y la clave de API."
-            )
+            msg = f"Error al analizar artículos con Gemini: {e}. Verifique su conexión a internet y la clave de API."
             raise AnalysisError(msg) from e
 
 

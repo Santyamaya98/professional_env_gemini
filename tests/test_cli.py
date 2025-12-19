@@ -17,9 +17,7 @@ class TestCLI(unittest.TestCase):
         mock_service_class.return_value = mock_service
         mock_service.search_articles.return_value = []
 
-        with patch(
-            "sys.argv", ["platzi-news", "search", "test", "--source", "guardian"]
-        ):
+        with patch("sys.argv", ["platzi-news", "search", "test", "--source", "guardian"]):
             main()
         mock_service.search_articles.assert_called_once_with("guardian", "test")
         mock_exit.assert_called_once_with(0)
@@ -58,9 +56,7 @@ class TestCLI(unittest.TestCase):
         mock_exit.side_effect = SystemExit
 
         with (
-            patch(
-                "sys.argv", ["platzi-news", "search", "test", "--source", "guardian"]
-            ),
+            patch("sys.argv", ["platzi-news", "search", "test", "--source", "guardian"]),
             self.assertRaises(SystemExit),
         ):
             main()

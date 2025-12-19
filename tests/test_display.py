@@ -27,17 +27,13 @@ class TestDisplay(unittest.TestCase):
     def test_display_articles_empty(self, mock_console):
         """Test display_articles with no articles."""
         display_articles([])
-        mock_console.print.assert_called_with(
-            "[yellow]No se encontraron artículos.[/yellow]"
-        )
+        mock_console.print.assert_called_with("[yellow]No se encontraron artículos.[/yellow]")
 
     @patch("platzi_news.io.display.console")
     def test_display_answer(self, mock_console):
         """Test display_answer."""
         display_answer("Test answer")
-        mock_console.print.assert_called_with(
-            "\n[bold green]Respuesta:[/bold green] Test answer\n"
-        )
+        mock_console.print.assert_called_with("\n[bold green]Respuesta:[/bold green] Test answer\n")
 
     @patch("platzi_news.io.display.console")
     def test_display_error(self, mock_console):

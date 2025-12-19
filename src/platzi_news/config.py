@@ -25,28 +25,17 @@ class Settings(BaseSettings):
     sentry_dsn: str | None = Field(None, description="Sentry DSN")
     max_articles: int = Field(5, description="Maximum number of articles to fetch")
     request_timeout: int = Field(5, description="Timeout for API requests in seconds")
-    openai_model: str = Field(
-        "gemini-2.5-flash", description="gemini model to use for analysis"
-    )
-    openai_max_tokens: int = Field(
-        1500, description="Maximum tokens for Gemini response"
-    )
+    openai_model: str = Field("gemini-2.5-flash", description="gemini model to use for analysis")
+    openai_max_tokens: int = Field(1500, description="Maximum tokens for Gemini response")
 
 
 # Global settings instance with validation
 try:
     settings = Settings()  # type: ignore[call-arg]
 except ValidationError as e:
-    missing_keys = [
-        str(err["loc"][0]) for err in e.errors() if err["type"] == "missing"
-    ]
+    missing_keys = [str(err["loc"][0]) for err in e.errors() if err["type"] == "missing"]
     if missing_keys:
-        msg = (
-            "Las siguientes claves de API no están "
-            f"configuradas: {', '.join(missing_keys)}. "
-            "Por favor, configure las variables de entorno "
-            "en un archivo .env o en su sistema."
-        )
+        msg = f"Las siguientes claves de API no están configuradas: {', '.join(missing_keys)}. Por favor, configure las variables de entorno en un archivo .env o en su sistema."
         raise ConfigError(msg) from e
     else:
         raise ConfigError(f"Error de configuración: {e}") from e

@@ -77,16 +77,11 @@ class NewsService:
         """
         return self.analyzer.analyze(articles, question)
 
-    def find_articles_by_keyword(
-        self, articles: list[Article], keyword: str
-    ) -> list[Article]:
+    def find_articles_by_keyword(self, articles: list[Article], keyword: str) -> list[Article]:
         """Find articles containing a keyword (inefficient implementation)."""
         results = []
         for article in articles:
-            if (
-                keyword.lower() in article.title.lower()
-                or keyword.lower() in article.description.lower()
-            ):
+            if keyword.lower() in article.title.lower() or keyword.lower() in article.description.lower():
                 results.append(article)
         return results
 
@@ -103,9 +98,6 @@ class NewsService:
         """Count articles containing a keyword."""
         count = 0
         for article in articles:
-            if (
-                keyword.lower() in article.title.lower()
-                or keyword.lower() in article.description.lower()
-            ):
+            if keyword.lower() in article.title.lower() or keyword.lower() in article.description.lower():
                 count += 1
         return count

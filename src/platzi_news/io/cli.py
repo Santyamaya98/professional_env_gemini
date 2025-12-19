@@ -16,9 +16,7 @@ def print_help() -> None:
     print("  search <query> --source <source>    Search articles")
     print("  ask <query> <question> --source <source>    Ask about news")
     print("Options:")
-    print(
-        "  --log-level <level>    Set log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)"
-    )
+    print("  --log-level <level>    Set log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)")
 
 
 def parse_args() -> SimpleNamespace:
@@ -48,9 +46,7 @@ def parse_args() -> SimpleNamespace:
             sys.exit(1)
         query = sys.argv[2]
         source = sys.argv[4]
-        return SimpleNamespace(
-            command=command, query=query, source=source, log_level=log_level
-        )
+        return SimpleNamespace(command=command, query=query, source=source, log_level=log_level)
     elif command == "ask":
         if len(sys.argv) != 6 or sys.argv[4] != "--source":
             print("Usage: platzi-news ask <query> <question> --source <source>")
@@ -90,9 +86,7 @@ async def main() -> NoReturn:
             logger.info(f"Found {len(articles)} articles")
             display_articles(articles)
         elif args.command == "ask":
-            logger.info(
-                f"Asking '{args.question}' about '{args.query}' from {args.source}"
-            )
+            logger.info(f"Asking '{args.question}' about '{args.query}' from {args.source}")
             articles = await service.asearch_articles(args.source, args.query)
             logger.info(f"Retrieved {len(articles)} articles for analysis")
             answer = service.analyze_articles(articles, args.question)
