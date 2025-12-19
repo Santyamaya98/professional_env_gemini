@@ -9,7 +9,7 @@ on:
 jobs:
   uv:
     name: python
-    runs-on: mac-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v5
